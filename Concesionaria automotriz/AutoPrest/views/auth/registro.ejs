@@ -1,0 +1,55 @@
+<%- include('../layout/header.ejs') %>
+
+
+    <link rel="stylesheet" href="/css/registro.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <%- include('../layout/nav_registro.ejs') %>
+ 
+
+    <div class="d-flex justify-content-center align-items-center pb-3 pt-4">
+        <div class="login-container rounded-3">
+            <% if (error.length > 0) { %>
+                <div class="alert alert-danger"><%= error[0] %></div>
+            <% } %>
+            <% if (success.length > 0) { %>
+                <div class="alert alert-success"><%= success[0] %></div>
+            <% } %>
+            <h2 class="text-center mb-4">Registro</h2>
+            <form id="login-form" class="auth-form active" action="/registro" method="POST">
+                <!-- Campo de Nombre -->
+              <!-- Campo de Nombre -->
+<div class="mb-3">
+    <label for="nombre" class="form-label  text-light">Nombre Completo</label>
+    <input type="text" class="form-control text-light" id="nombre" name="nombre" placeholder="Ingresa tu nombre" required>
+</div>
+
+<!-- Campo de Email -->
+<div class="mb-3">
+    <label for="email" class="form-label text-light">Correo Electrónico</label>
+    <input type="email" class="form-control text-light" id="email" name="email" placeholder="Ingresa tu correo" required>
+</div>
+
+<!-- Campo de Contraseña -->
+<div class="mb-3">
+    <label for="password" class="form-label text-light">Contraseña</label>
+    <input type="password" class="form-control text-light" id="password" name="pass" placeholder="Ingresa tu contraseña" required>
+</div>
+
+<!-- Campo de Confirmar Contraseña (solo visual, no lo usas en backend por ahora) -->
+<div class="mb-3">
+    <label for="confirm-password" class="form-label">Confirmar Contraseña</label>
+    <input type="password" class="form-control text-light" id="confirm-password" placeholder="Confirma tu contraseña" required>
+</div>
+
+                <button type="submit" class="button w-100 button-register">Registrarse</button>
+            </form>
+            <!-- Enlace para Iniciar Sesión -->
+            <p class="text-center mt-3">
+                ¿Ya tienes una cuenta? <a href="/login" class="enlace">Inicia sesión aquí</a>
+            </p>
+        </div>
+    </div>
+
+    <%- include('../layout/footer.ejs') %>

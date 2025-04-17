@@ -1,0 +1,164 @@
+<!-- HEADER MEJORADO Y ESTILIZADO -->
+<header class="header bg-dark shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <!-- Logo y marca -->
+            <a class="navbar-brand nav__luxury d-flex align-items-center" href="/gerente">
+                <i class="bi bi-car-front-fill fs-4 me-2"></i>
+                <span class="fw-bold">AutoPrest</span>
+            </a>
+            
+            <!-- Botón para móviles -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!-- Menú de navegación -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-nav me-auto">
+                    <!-- Elementos del menú -->
+                    <a class="nav-link" href="/gerente/autopendiente">
+                        <i class="bi bi-hourglass-split me-1"></i> Autos Pendientes
+                    </a>
+                    <a class="nav-link" href="/gerente/catalogoventa">
+                        <i class="bi bi-cash-coin me-1"></i> Vender Vehículo
+                    </a>
+                    <a href="/gerente/detalleventa" class="nav-link">
+
+                        <i class="bi bi-list-check me-1"></i> Historial Ventas
+                    </a>
+              
+                </div>
+                
+                <!-- Área de usuario -->
+                <div class="d-flex align-items-center">
+                    <% if (!session.token) { %>
+                        <a class="btn btn-outline-light me-2" href="/login">
+                            <i class="bi bi-box-arrow-in-right"></i> Ingresar
+                        </a>
+                    <% } else { %>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-light dropdown-toggle" type="button" 
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-circle me-1"></i>
+                                <%= usuario?.nombre || 'Usuario' %>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><h6 class="dropdown-header"><%= usuario?.rol || 'Gerente' %></h6></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <form action="/logout" method="POST">
+                                        <button class="dropdown-item text-danger" type="submit">
+                                            <i class="bi bi-box-arrow-right me-2"></i> Cerrar sesión
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<style>
+    /* ESTILOS PERSONALIZADOS PARA EL HEADER */
+    .header {
+        position: sticky;
+        top: 0;
+        z-index: 1030;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .navbar-brand {
+        font-family: 'Montserrat', sans-serif;
+        letter-spacing: 1px;
+        transition: transform 0.3s ease;
+    }
+    
+    .navbar-brand:hover {
+        transform: scale(1.05);
+    }
+    
+    .nav-link {
+        position: relative;
+        margin: 0 5px;
+        padding: 8px 15px;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+        font-weight: 500;
+    }
+    
+    .nav-link:hover, .nav-link:focus {
+        background-color: rgba(13, 110, 253, 0.2);
+        transform: translateY(-2px);
+    }
+    
+    .nav-link i {
+        transition: transform 0.3s ease;
+    }
+    
+    .nav-link:hover i {
+        transform: scale(1.2);
+    }
+    
+    .dropdown-menu {
+        background-color: #343a40;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .dropdown-item {
+        color: rgba(255, 255, 255, 0.8);
+        transition: all 0.2s ease;
+    }
+    
+    .dropdown-item:hover {
+        background-color: #0d6efd;
+        color: white !important;
+        padding-left: 20px;
+    }
+    
+    .dropdown-divider {
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .btn-outline-light {
+        border-width: 2px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-outline-light:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+    }
+    
+    /* Efecto para el botón de usuario */
+    .dropdown-toggle::after {
+        transition: transform 0.3s ease;
+    }
+    
+    .show .dropdown-toggle::after {
+        transform: rotate(180deg);
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 992px) {
+        .navbar-nav {
+            padding-top: 15px;
+        }
+        
+        .nav-link {
+            margin-bottom: 5px;
+        }
+        
+        .d-flex.align-items-center {
+            padding-top: 15px;
+            padding-bottom: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    }
+</style>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoPrest | Servicios</title>
+
+    <!-- FAVICON -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../assets/favicon/site.webmanifest">
+    <link rel="mask-icon" href="../assets/favicon/safari-pinned-tab.svg" color="#6b6b6b">
+    <meta name="apple-mobile-web-app-title" content="Luxury">
+    <meta name="application-name" content="Luxury">
+    <meta name="msapplication-TileColor" content="#2b5797">
+    <meta name="theme-color" content="#000000">
+
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/servicios.css">
+
+    <!-- BOOTSTRAP ICONS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+
+<body>
+
+    <div class="contenedor">
+       <!-- APERTURA DEL HEADER --> 
+       <%- include('./layout/nav.ejs') %>
+        <!-- CIERRE DEL HEADER -->
+
+        <!-- APERTURA DEL MAIN -->
+        <main class="main">
+            <section class="banner">
+                <img src="./assets/luxury/servicios.jpg" alt="servicios-banner" class="img">
+                <div class="texto">
+                    <h1 class="titulo">Servicios</h1>
+                </div>
+            </section>
+
+            <section class="container__cards">
+                <div class="card__container">
+                    <i class="bi bi-cash-coin card__icon"></i>
+                    <div class="card__body">
+                        <h3 class="card__nombre">Financiamiento</h3>
+                        <p class="card__descripcion">Te ayudamos a encontrar opciones de financiamiento personalizadas y
+                            asequibles, así como programas de arrendamiento flexibles.</p>
+                        <p class="card__beneficios"><span class="card__beneficios__nombre">Beneficios</span>: Facilita
+                            la adquisición de tu vehículo, opciones de pago flexibles,
+                            tasas competitivas.</p>
+                        <a class="button" href="/contacto">Programar cita</a>
+                    </div>
+                </div>
+                
+                <div class="card__container">
+                    <i class="bi bi-tools card__icon"></i>
+                    <div class="card__body">
+                        <h3 class="card__nombre">Mantenimiento</h3>
+                        <p class="card__descripcion">Nuestros técnicos certificados brindan servicios de reparación y
+                            mantenimiento de alta calidad, desde cambios de aceite hasta reparaciones importantes.</p>
+                        <p class="card__beneficios"><span class="card__beneficios__nombre">Beneficios</span>:
+                            Mantenimiento
+                            óptimo, prolongación de la vida útil del vehículo, garantía de piezas y mano de obra.</p>
+                        <a class="button" href="/contacto">Programar cita</a>
+                    </div>
+                </div>
+
+                <div class="card__container">
+                    <i class="bi bi-gear-wide-connected card__icon"></i>
+                    <div class="card__body">
+                        <h3 class="card__nombre">Repuestos</h3>
+                        <p class="card__descripcion">Ofrecemos una selección completa de repuestos originales y
+                            accesorios
+                            de alta calidad para tu vehículo de lujo. Ya sea que necesites repuestos para mantenimiento
+                            o
+                            desees personalizar tu vehículo, estamos aquí para satisfacer tus necesidades.</p>
+                        <p class="card__beneficios"><span class="card__beneficios__nombre">Beneficios</span>: Piezas de
+                            alta
+                            calidad, garantía de compatibilidad, personalización.</p>
+                        <a class="button" href="/contacto">Programar cita</a>
+                    </div>
+                </div>
+
+                <div class="card__container">
+                    <i class="bi bi-shield-lock-fill card__icon"></i>
+                    <div class="card__body">
+                        <h3 class="card__nombre">Programas de Garantía Extendida</h3>
+                        <p class="card__descripcion">Ofrecemos programas de garantía extendida que brindan una mayor
+                            protección para tu inversión en vehículo.</p>
+                        <p class="card__beneficios"><span class="card__beneficios__nombre">Beneficios</span>: Mayor
+                            tranquilidad, cobertura ampliada, minimiza los costos imprevistos.</p>
+                        <a class="button" href="/contacto">Programar cita</a>
+                    </div>
+                </div>
+
+                <div class="card__container">
+                    <i class="bi bi-person-vcard-fill card__icon"></i>
+                    <div class="card__body">
+                        <h3 class="card__nombre">Pruebas de Manejo</h3>
+                        <p class="card__descripcion">Ofrecemos pruebas de manejo para que los clientes experimenten la
+                            calidad y el rendimiento de nuestros vehículos.</p>
+                        <p class="card__beneficios"><span class="card__beneficios__nombre">Beneficios</span>: Evaluación
+                            personal del vehículo, toma de decisiones informada.</p>
+                        <a class="button" href="/contacto">Programar cita</a>
+                    </div>
+                </div>
+
+                <div class="card__container">
+                    <i class="bi bi-car-front-fill card__icon"></i>
+                    <div class="card__body">
+                        <h3 class="card__nombre">Asesoramiento en Personalización de Vehículos</h3>
+                        <p class="card__descripcion">Nuestro equipo de expertos en personalización te ayudará a
+                            transformar
+                            tu vehículo en una obra maestra única. Desde mejoras en el rendimiento hasta detalles de
+                            lujo,
+                            te guiarán a través de las opciones de personalización disponibles.</p>
+                        <p class="card__beneficios"><span class="card__beneficios__nombre">Beneficios</span>: Creación
+                            de un
+                            vehículo único, mejora de rendimiento y comodidad, reflejo de tu estilo y preferencias
+                            personales.</p>
+                        <a class="button" href="/contacto">Programar cita</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <!-- CIERRE DEL MAIN -->
+    </div>
+    <br>
+    <br>
+
+    <!-- APERTURA DEL FOOTER -->
+    <%- include('./layout/footer.ejs') %>
+    <!-- CIERRE DEL FOOTER -->
+
+ 

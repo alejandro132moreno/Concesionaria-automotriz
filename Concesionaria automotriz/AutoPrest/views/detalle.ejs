@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+
+    <!-- FAVICON -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicon/site.webmanifest">
+
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/">
+
+    <!-- BOOTSTRAP ICONS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <div class="contenedor">
+        <!---- NAV ---->
+        <%- include('./layout/nav.ejs') %>
+        <!---- FIN NAV ---->
+    
+        
+            <main class="container my-5">
+                <% if (vehiculo) { %>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="/uploads/<%= vehiculo.Imagen %>" 
+                                 class="img-fluid rounded shadow" 
+                                 alt="<%= vehiculo.Marca %> <%= vehiculo.Modelo %>"
+                                 style="max-height: 500px; object-fit: cover;">
+                        </div>
+                        <div class="col-md-6">                  
+                            <!-- Tarjeta de información del vendedor -->
+                            <div class="card mb-4 border-primary">
+                                <div class="card-header bg-primary text-white">
+                                    <h5 class="mb-0"><i class="bi bi-person-circle"></i> Información del Vendedor</h5>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="list-unstyled">
+                                        <li class="mb-2">
+                                            <strong><i class="bi bi-person"></i> Nombre:</strong> 
+                                            <span class="fs-5"><%= vehiculo.NombreVendedor %></span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <strong><i class="bi bi-telephone"></i> Teléfono:</strong> 
+                                            <span class="fs-5"><%= vehiculo.TelefonoVendedor %></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+    
+                            <!-- Tarjeta de información del vehículo -->
+                            <div class="card mb-4 border-danger">
+                                <div class="card-header bg-danger text-white">
+                                    <h5 class="mb-0"><i class="bi bi-car-front"></i> Datos del Vehículo</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <!-- Columna izquierda -->
+                                        <div class="col-md-6">
+                                            <ul class="list-unstyled">
+                                                <li class="mb-3">
+                                                    <strong><i class="bi bi-tag"></i> Marca:</strong>
+                                                    <span class="fs-5"><%= vehiculo.Marca %></span>
+                                                </li>
+                                                <li class="mb-3">
+                                                    <strong><i class="bi bi-box-seam"></i> Modelo:</strong>
+                                                    <span class="fs-5"><%= vehiculo.Modelo %></span>
+                                                </li>
+                                                <li class="mb-3">
+                                                    <strong><i class="bi bi-calendar"></i> Año:</strong>
+                                                    <span class="fs-5"><%= vehiculo.Anio %></span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        
+                                        <!-- Columna derecha -->
+                                        <div class="col-md-6">
+                                            <ul class="list-unstyled">
+                                                <li class="mb-3">
+                                                    <strong><i class="bi bi-speedometer2"></i> Kilometraje:</strong>
+                                                    <span class="fs-5"><%= vehiculo.Kilometraje.toLocaleString() %> km</span>
+                                                </li>
+                                                <li class="mb-3">
+                                                    <strong><i class="bi bi-gear"></i> Transmisión:</strong>
+                                                    <span class="fs-5"><%= vehiculo.Transmision %></span>
+                                                </li>
+                                                <li class="mb-3">
+                                                    <strong><i class="bi bi-fuel-pump"></i> Combustible:</strong>
+                                                    <span class="fs-5"><%= vehiculo.Combustible %></span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- Precio -->
+                                    <div class="mt-4 p-3 bg-light rounded">
+                                        <h3 class="text-center text-danger mb-0">
+                                            <i class="bi bi-currency-dollar"></i> 
+                                            <%= typeof helpers !== 'undefined' && helpers.formatPrice ? 
+                                                helpers.formatPrice(vehiculo.Precio) : 
+                                                '$' + vehiculo.Precio.toLocaleString() %>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <!-- Botón de WhatsApp -->
+                            <div class="d-grid gap-2">
+                                <a href="https://wa.me/+52<%= vehiculo.TelefonoVendedor.replace(/\D/g, '') %>?text=¡Hola <%= vehiculo.NombreVendedor %>! Estoy interesado en: <%= vehiculo.Marca %> <%= vehiculo.Modelo %> (Año: <%= vehiculo.Anio %>). ¿Podrías darme más información?" 
+                                    class="btn btn-success btn-lg py-3"
+                                    target="_blank"
+                                    rel="noopener noreferrer">
+                                    <i class="bi bi-whatsapp"></i> Contactar por WhatsApp
+                                 </a>
+                                <a href="/catalogo" class="btn btn-outline-secondary">
+                                    <i class="bi bi-arrow-left"></i> Volver al catálogo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                <% } else { %>
+                    <div class="alert alert-warning text-center py-4">
+                        <h4><i class="bi bi-exclamation-triangle"></i> Vehículo no encontrado</h4>
+                        <a href="/catalogo" class="btn btn-primary mt-3">Ver catálogo completo</a>
+                    </div>
+                <% } %>
+            </main>
+
+    <!---- FOOTER ---->
+    <%- include('./layout/footer.ejs') %>
+    <!---- FIN FOOTER ---->
+
+    <!-- BOOTSTRAP SCRIPT -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Puedes mantener tus scripts si tienen otras funcionalidades -->
+    <script src="/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <!-- FAVICON -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicon/site.webmanifest">
+
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/catalogo.css">
+
+    <!-- BOOTSTRAP ICONS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <div class="contenedor">
+        <!---- NAV ---->
+        <%- include('./layout/nav.ejs') %>
+        <!---- FIN NAV ---->
+
+        <main class="main">
+            <div class="texto" style="text-align: center;">
+                <h1 class="titulo" style="text-align: center;">Catálogo</h1>
+            </div>
+
+            <section class="section__catalogo">
+                <img src="/assets/luxury/modelos.jpg" alt="banner" class="img">
+                <br>
+                <h2 class="section__catalogo__titulo">NUESTROS MODELOS DESTACADOS</h2>
+                <br><br>
+
+                <!-- Mostramos los vehículos desde la base de datos -->
+                <div class="container">
+                    <% if (vehiculos && vehiculos.length > 0) { %>
+                        <div class="row row-cols-1 row-cols-md-3 g-4">
+                            <% vehiculos.forEach(vehiculo => { %>
+                            <div class="col mb-4">
+                                <div class="card h-100" onclick="location.href='/catalogo/<%= vehiculo.id %>'" style="cursor: pointer;">
+                                    <img src="/uploads/<%= vehiculo.Imagen %>" 
+                                         class="card-img-top img-fluid" 
+                                         alt="<%= vehiculo.Marca %> <%= vehiculo.Modelo %>"
+                                         style="height: 200px; object-fit: cover;">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><%= vehiculo.Marca %> <%= vehiculo.Modelo %></h5>
+                                        <p class="card-text">
+                                            <strong>Condicion:</strong> <%= vehiculo.Condicion %><br>
+                                            <strong>Año:</strong> <%= vehiculo.Anio %><br>
+                                            <strong>Precio:</strong> $<%= vehiculo.Precio.toLocaleString() %><br>
+                                            <strong>Kilometraje:</strong> <%= vehiculo.Kilometraje.toLocaleString() %> km<br>
+                                            <strong>Transmisión:</strong> <%= vehiculo.Transmision %>
+                                        </p>
+                                    </div>
+                                    <div class="card-footer bg-transparent" style="text-align: center;">
+                                        <a onclick="location.href='/catalogo/<%= vehiculo.id %>'" class="btn btn-primary">Contactar al Vendedor</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <% }); %>
+                        </div>
+                    <% } else { %>
+                        <div class="alert alert-info text-center">No hay vehículos disponibles en este momento.</div>
+                    <% } %>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!---- FOOTER ---->
+    <%- include('./layout/footer.ejs') %>
+    <!---- FIN FOOTER ---->
+
+    <!-- BOOTSTRAP SCRIPT -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Puedes mantener tus scripts si tienen otras funcionalidades -->
+    <script src="/js/script.js"></script>
+</body>
+</html>

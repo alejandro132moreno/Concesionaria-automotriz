@@ -1,0 +1,40 @@
+<%- include('../layout/header.ejs') %>
+
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+    <%- include('../layout/nav.ejs') %>
+        <!-- Formulario de Login -->
+       
+            <div class="d-flex justify-content-center align-items-center pb-5">
+                <div class="login-container  rounded-3">
+                    <% if (error.length > 0) { %>
+                        <div class="alert alert-danger"><%= error[0] %></div>
+                    <% } %>
+                    <% if (success.length > 0) { %>
+                        <div class="alert alert-success"><%= success[0] %></div>
+                    <% } %>
+                
+                    <h2 class="text-center mb-4">Iniciar Sesión</h2>
+                    <form id="login-form" class="auth-form active" action="/login" method="POST">
+                        <!-- Campo de Email -->
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Correo Electrónico</label>
+                            <input type="text" name="email" class="form-control text-light"  placeholder="Usuario" required>
+                        </div>
+                        <!-- Campo de Contraseña -->
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control text-light" name="pass" id="password" placeholder="Ingresa tu contraseña" required>
+                        </div>
+                        <!-- Botón de Enviar -->
+                        <button type="submit" class="button w-100 button-register">Ingresar</button>
+                    </form>
+                    <!-- Enlace para Registrarse -->
+                    <p class="text-center mt-3">
+                        ¿No tienes una cuenta? <a href="/registro" class="enlace">Regístrate aquí</a>
+                    </p>
+                </div>
+            </div>
+<%- include('../layout/footer.ejs') %>

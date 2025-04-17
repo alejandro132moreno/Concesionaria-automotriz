@@ -1,0 +1,33 @@
+<!-- APERTURA DEL HEADER -->
+<header class="header">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand nav__luxury" href="/panel">AutoPrest</a>
+            <button class="navbar-toggler nav__toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon nav__toggler__icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link nav__link" href="#">Catálogo</a>
+                    <a class="nav-link nav__link" href="#">Servicios</a>
+                    <a class="nav-link nav__link" href="#">Contacto</a>
+                    <a class="nav-link nav__link" href="#">Vender mi Vehículo</a>
+                </div>
+                <div class="ms-auto d-flex align-items-center">
+                    <% if (!session.token) { %>
+                        <a class="btn btn-outline-primary ms-3" href="/login">Iniciar sesión</a>
+                    <% } else { %>
+                        <span class="me-3 text-white">Hola, <%= usuario?.nombre || 'Usuario' %></span>
+                        <form action="/logout" method="POST">
+                            <button class="btn btn-danger" type="submit">Cerrar sesión</button>
+                        </form>
+                    <% } %>
+                </div>
+                
+            </div>
+        </div>
+    </nav>
+</header>
+<!-- CIERRE DEL HEADER -->

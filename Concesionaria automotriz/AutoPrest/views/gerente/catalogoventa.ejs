@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <!-- FAVICON -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicon/site.webmanifest">
+
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/styles.css">
+
+    <!-- BOOTSTRAP ICONS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+<body>
+    <div class="contenedor">
+        <%- include('../layout/nav_gerente.ejs') %>
+
+        <main class="container my-5">
+            <h1 class="mb-4">Venta de Vehículos</h1>
+
+            <!-- Buscador -->
+            <form method="GET" action="/gerente/catalogoventa" class="mb-4">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="busqueda" placeholder="Buscar por marca, modelo o año" value="<%= busqueda || '' %>">
+                    <button class="btn btn-outline-primary" type="submit">Buscar</button>
+                </div>
+            </form>
+
+            <!-- Tabla de autos disponibles -->
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Año</th>
+                        <th>Precio</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (autos.length === 0) { %>
+                        <tr>
+                            <td colspan="5" class="text-center">No se encontraron autos.</td>
+                        </tr>
+                    <% } else { %>
+                        <% autos.forEach(auto => { %>
+                            <tr>
+                                <td><%= auto.Marca %></td>
+                                <td><%= auto.Modelo %></td>
+                                <td><%= auto.Anio %></td>
+                                <td>$<%= auto.Precio.toLocaleString() %></td>
+                               <!-- Cambia esto en tu tabla -->
+<td>
+    <a href="/gerente/catalogoventa/<%= auto.id %>" class="btn btn-primary btn-sm">Seleccionar</a>
+</td>
+                            </tr>
+                        <% }) %>
+                    <% } %>
+                </tbody>
+            </table>
+
+            <!-- Mostrar formulario solo si hay un auto seleccionado -->
+            <% if (autoSeleccionado) { %>
+                <hr>
+                <h3>Registrar Venta</h3>
+                <div class="card p-3">
+                    <p><strong>Vehículo:</strong> <%= autoSeleccionado.Marca %> <%= autoSeleccionado.Modelo %> - <%= autoSeleccionado.Anio %></p>
+                    <p><strong>Precio:</strong> $<%= autoSeleccionado.Precio.toLocaleString() %></p>
+
+                 <!-- Cambia esto en tu archivo EJS -->
+<form method="POST" action="/gerente/catalogoventa/<%= autoSeleccionado.id %>">
+                        <input type="hidden" name="vehiculo_id" value="<%= autoSeleccionado.id %>">
+                   
+
+                        <div class="row mb-2">
+                            <div class="col">
+                                <input class="form-control" type="text" name="comprador_nombre" placeholder="Nombre del comprador" required>
+                            </div>
+                            <div class="col">
+                                <input class="form-control" type="text" name="comprador_apellidos" placeholder="Apellidos del comprador" required>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col">
+                                <input class="form-control" type="text" name="comprador_telefono" placeholder="Teléfono" required>
+                            </div>
+                            <div class="col">
+                                <input class="form-control" type="email" name="comprador_correo" placeholder="Correo electrónico" required>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-success">Registrar venta</button>
+                    </form>
+                </div>
+            <% } %>
+        </main>
+
+        <%- include('../layout/footer.ejs') %>
+    </div>
+
+    <!-- BOOTSTRAP SCRIPT -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/script.js"></script>
+</body>
+</html>
